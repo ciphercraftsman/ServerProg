@@ -1,6 +1,14 @@
 package com.yrgo.services.customers;
 
 public class CustomerNotFoundException extends Exception {
-	// this is just to stop the annoying warning in Eclipse.
-	private static final long serialVersionUID = 1L;
+
+	// Standardkonstruktör
+	public CustomerNotFoundException(String message) {
+		super(message);
+	}
+
+	// Konstruktor med orsak
+	public CustomerNotFoundException(String message, Throwable cause) {
+		super(message, cause);
+	}
 }

@@ -6,8 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="BookStore-Maven" />
+        <module name="CRM-System" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="BookStore-Maven" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>

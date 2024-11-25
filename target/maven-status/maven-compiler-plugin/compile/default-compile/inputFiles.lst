@@ -6,7 +6,9 @@ C:\projekt\ServerProgram\Del2\Inlämningar\CRM System\src\main\java\com\yrgo\data
 C:\projekt\ServerProgram\Del2\Inlämningar\CRM System\src\main\java\com\yrgo\dataaccess\ActionDaoJdbcImpl.java
 C:\projekt\ServerProgram\Del2\Inlämningar\CRM System\src\main\java\com\yrgo\domain\Action.java
 C:\projekt\ServerProgram\Del2\Inlämningar\CRM System\src\main\java\com\yrgo\domain\Call.java
+C:\projekt\ServerProgram\Del2\Inlämningar\CRM System\src\main\java\com\yrgo\services\customers\CustomerManagementServiceProductionImpl.java
 C:\projekt\ServerProgram\Del2\Inlämningar\CRM System\src\main\java\com\yrgo\dataaccess\ActionDao.java
+C:\projekt\ServerProgram\Del2\Inlämningar\CRM System\src\main\java\com\yrgo\dataaccess\CustomerDaoJdbcTemplateImpl.java
 C:\projekt\ServerProgram\Del2\Inlämningar\CRM System\src\main\java\com\yrgo\services\calls\CallHandlingService.java
 C:\projekt\ServerProgram\Del2\Inlämningar\CRM System\src\main\java\com\yrgo\services\customers\CustomerNotFoundException.java
 C:\projekt\ServerProgram\Del2\Inlämningar\CRM System\src\main\java\com\yrgo\services\diary\DiaryManagementServiceMockImpl.java

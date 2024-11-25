@@ -8,8 +8,10 @@ com\yrgo\domain\Action.class
 com\yrgo\services\customers\CustomerManagementService.class
 com\yrgo\client\SimpleClient.class
 com\yrgo\services\customers\CustomerNotFoundException.class
+com\yrgo\dataaccess\CustomerDaoJdbcTemplateImpl.class
 com\yrgo\services\calls\CallHandlingServiceImpl.class
 com\yrgo\dataaccess\ActionRowMapper.class
+com\yrgo\services\customers\CustomerManagementServiceProductionImpl.class
 com\yrgo\dataaccess\CustomerDao.class
 com\yrgo\domain\Call.class
 com\yrgo\dataaccess\ActionDaoJdbcImpl.class
