@@ -12,6 +12,7 @@ com\yrgo\dataaccess\CustomerDaoJdbcTemplateImpl.class
 com\yrgo\services\calls\CallHandlingServiceImpl.class
 com\yrgo\dataaccess\ActionRowMapper.class
 com\yrgo\services\customers\CustomerManagementServiceProductionImpl.class
+com\yrgo\advice\PerformanceTimingAdvice.class
 com\yrgo\dataaccess\CustomerDao.class
 com\yrgo\domain\Call.class
 com\yrgo\dataaccess\ActionDaoJdbcImpl.class

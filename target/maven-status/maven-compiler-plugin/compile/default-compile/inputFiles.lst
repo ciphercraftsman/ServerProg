@@ -3,6 +3,7 @@ C:\projekt\ServerProgram\Del2\Inlämningar\CRM System\src\main\java\com\yrgo\doma
 C:\projekt\ServerProgram\Del2\Inlämningar\CRM System\src\main\java\com\yrgo\services\customers\CustomerManagementMockImpl.java
 C:\projekt\ServerProgram\Del2\Inlämningar\CRM System\src\main\java\com\yrgo\services\diary\DiaryManagementService.java
 C:\projekt\ServerProgram\Del2\Inlämningar\CRM System\src\main\java\com\yrgo\dataaccess\RecordNotFoundException.java
+C:\projekt\ServerProgram\Del2\Inlämningar\CRM System\src\main\java\com\yrgo\advice\PerformanceTimingAdvice.java
 C:\projekt\ServerProgram\Del2\Inlämningar\CRM System\src\main\java\com\yrgo\dataaccess\ActionDaoJdbcImpl.java
 C:\projekt\ServerProgram\Del2\Inlämningar\CRM System\src\main\java\com\yrgo\domain\Action.java
 C:\projekt\ServerProgram\Del2\Inlämningar\CRM System\src\main\java\com\yrgo\domain\Call.java
