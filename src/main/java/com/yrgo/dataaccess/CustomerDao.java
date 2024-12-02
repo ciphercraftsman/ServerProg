@@ -18,10 +18,9 @@ public interface CustomerDao {
 
 	List<Customer> getAllCustomers();
 
-	List<Call> getCallsForCustomer(String customerId);
+    public Customer getFullCustomerDetail(String customerId) throws RecordNotFoundException;
 
-	void addCallForCustomer(String customerId, Call newCall);
 
-	void createTables();
+    public void addCall (Call newCall, String customerId) throws RecordNotFoundException;
 }
 

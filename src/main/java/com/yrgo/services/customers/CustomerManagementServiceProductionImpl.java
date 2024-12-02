@@ -55,10 +55,8 @@ public class CustomerManagementServiceProductionImpl implements CustomerManageme
     @Override
     public Customer getFullCustomerDetail(String customerId) throws CustomerNotFoundException {
         try {
-            Customer customer = customerDao.getCustomerById(customerId);
-            List<Call> calls = customerDao.getCallsForCustomer(customerId);
-            customer.setCalls(calls);
-            return customer;
+            // Använd getFullCustomerDetail direkt
+            return customerDao.getFullCustomerDetail(customerId);
         } catch (RecordNotFoundException e) {
             throw new CustomerNotFoundException("Customer not found: " + customerId, e);
         }
@@ -66,6 +64,15 @@ public class CustomerManagementServiceProductionImpl implements CustomerManageme
 
     @Override
     public void recordCall(String customerId, Call callDetails) throws CustomerNotFoundException {
-        customerDao.addCallForCustomer(customerId, callDetails);
+        try {
+            // Hämta fullständig kunddetalj
+            Customer customer = customerDao.getFullCustomerDetail(customerId);
+
+            // Lägg till samtal i kunden och uppdatera databasen
+            customer.getCalls().add(callDetails);
+            customerDao.addCall(callDetails, customerId);
+        } catch (RecordNotFoundException e) {
+            throw new CustomerNotFoundException("Customer not found for ID: " + customerId, e);
+        }
     }
 }

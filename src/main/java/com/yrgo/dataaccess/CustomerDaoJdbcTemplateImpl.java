@@ -17,9 +17,18 @@ public class CustomerDaoJdbcTemplateImpl implements CustomerDao {
 
     @Override
     public void createCustomer(Customer customer) {
-        String sql = "INSERT INTO CUSTOMERS (ID, NAME, NOTES) VALUES (?, ?, ?)";
-        jdbcTemplate.update(sql, customer.getCustomerId(), customer.getCompanyName(), customer.getNotes());
+        String checkSql = "SELECT COUNT(*) FROM CUSTOMERS WHERE ID = ?";
+        Integer count = jdbcTemplate.queryForObject(checkSql, Integer.class, customer.getCustomerId());
+
+        if (count != null && count > 0) {
+            System.out.println("Customer with ID " + customer.getCustomerId() + " already exists. Skipping insert.");
+            return;
+        }
+
+        String insertSql = "INSERT INTO CUSTOMERS (ID, NAME, NOTES) VALUES (?, ?, ?)";
+        jdbcTemplate.update(insertSql, customer.getCustomerId(), customer.getCompanyName(), customer.getNotes());
     }
+
 
     @Override
     public void updateCustomer(Customer customer) {
@@ -56,15 +65,23 @@ public class CustomerDaoJdbcTemplateImpl implements CustomerDao {
     }
 
     @Override
-    public List<Call> getCallsForCustomer(String customerId) {
-        String sql = "SELECT * FROM CALLS WHERE CUSTOMER_ID = ?";
-        return jdbcTemplate.query(sql, this::mapCall, customerId);
+    public void addCall(Call newCall, String customerId) throws RecordNotFoundException {
+        String sql = "INSERT INTO CALLS (CUSTOMER_ID, TIME_AND_DATE, NOTES) VALUES (?, ?, ?)";
+        jdbcTemplate.update(sql, customerId, newCall.getTimeAndDate(), newCall.getNotes());
     }
 
     @Override
-    public void addCallForCustomer(String customerId, Call call) {
-        String sql = "INSERT INTO CALLS (CUSTOMER_ID, TIME_AND_DATE, NOTES) VALUES (?, ?, ?)";
-        jdbcTemplate.update(sql, customerId, call.getTimeAndDate(), call.getNotes());
+    public Customer getFullCustomerDetail(String customerId) throws RecordNotFoundException {
+        // Hämta kunden
+        Customer customer = getCustomerById(customerId);
+
+        // Hämta tillhörande samtal
+        String sql = "SELECT * FROM CALLS WHERE CUSTOMER_ID = ?";
+        List<Call> calls = jdbcTemplate.query(sql, this::mapCall, customerId);
+
+        // Koppla samtalen till kunden
+        customer.setCalls(calls);
+        return customer;
     }
 
     private Customer mapCustomer(ResultSet rs, int rowNum) throws SQLException {
@@ -98,8 +115,4 @@ public class CustomerDaoJdbcTemplateImpl implements CustomerDao {
         jdbcTemplate.execute("CREATE TABLE CUSTOMERS (ID VARCHAR(50) PRIMARY KEY, NAME VARCHAR(100), NOTES VARCHAR(255))");
         jdbcTemplate.execute("CREATE TABLE CALLS (ID INTEGER IDENTITY PRIMARY KEY, CUSTOMER_ID VARCHAR(50), TIME_AND_DATE TIMESTAMP, NOTES VARCHAR(255))");
     }
-
-
-
-
 }

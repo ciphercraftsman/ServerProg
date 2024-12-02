@@ -14,7 +14,6 @@ import com.yrgo.services.calls.CallHandlingService;
 import com.yrgo.services.customers.CustomerManagementService;
 import com.yrgo.services.customers.CustomerNotFoundException;
 import com.yrgo.services.diary.DiaryManagementService;
-import com.yrgo.dataaccess.CustomerDao;
 
 public class SimpleClient {
 
@@ -22,11 +21,8 @@ public class SimpleClient {
         ClassPathXmlApplicationContext container = new ClassPathXmlApplicationContext("application.xml");
 
         CustomerManagementService customerService = container.getBean(CustomerManagementService.class);
-        CallHandlingService callService = container.getBean("callHandlingService", CallHandlingService.class);
-        DiaryManagementService diaryService = container.getBean("diaryService", DiaryManagementService.class);
-
-        CustomerDao customerDao = container.getBean(CustomerDao.class);
-        customerDao.createTables();
+        CallHandlingService callService = container.getBean(CallHandlingService.class);
+        DiaryManagementService diaryService = container.getBean(DiaryManagementService.class);
 
         customerService.newCustomer(new Customer("CS03939", "Acme", "Good Customer"));
 
