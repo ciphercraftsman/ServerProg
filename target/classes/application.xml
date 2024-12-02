@@ -45,4 +45,11 @@
 
 	<!-- Performance Timing Advice -->
 	<bean id="performanceTimingAdvice" class="com.yrgo.advice.PerformanceTimingAdvice"/>
+
+	<aop:config>
+		<aop:aspect ref="performanceTimingAdvice">
+			<aop:pointcut id="performancePointcut" expression="execution(* com.yrgo.services..*.*(..)) or execution(* com.yrgo.dataaccess..*.*(..))"/>
+			<aop:around method="measureExecutionTime" pointcut-ref="performancePointcut"/>
+		</aop:aspect>
+	</aop:config>
 </beans>
