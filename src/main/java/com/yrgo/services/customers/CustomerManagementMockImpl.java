@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
-
+import org.springframework.stereotype.Service;
+@Service
 public class CustomerManagementMockImpl implements CustomerManagementService {
 	private HashMap<String, Customer> customerMap;
 
