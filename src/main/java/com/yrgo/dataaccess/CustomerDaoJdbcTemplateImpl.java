@@ -2,14 +2,19 @@ package com.yrgo.dataaccess;
 
 import com.yrgo.domain.Call;
 import com.yrgo.domain.Customer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 @Repository
 public class CustomerDaoJdbcTemplateImpl implements CustomerDao {
+
+    @Autowired
     private JdbcTemplate jdbcTemplate;
 
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
@@ -100,6 +105,8 @@ public class CustomerDaoJdbcTemplateImpl implements CustomerDao {
         return call;
     }
 
+
+    @Transactional
     public void createTables() {
         try {
             jdbcTemplate.execute("DROP TABLE CALLS");

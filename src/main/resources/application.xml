@@ -37,21 +37,6 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
-	<!-- DAO Bean -->
-	<bean id="customerDao" class="com.yrgo.dataaccess.CustomerDaoJdbcTemplateImpl">
-		<property name="jdbcTemplate" ref="jdbcTemplate" />
-	</bean>
-
-	<!-- Service Beans -->
-	<bean id="customerService" class="com.yrgo.services.customers.CustomerManagementServiceProductionImpl">
-		<constructor-arg ref="customerDao" />
-	</bean>
-
-	<bean id="diaryService" class="com.yrgo.services.diary.DiaryManagementServiceMockImpl" />
-	<bean id="callHandlingService" class="com.yrgo.services.calls.CallHandlingServiceImpl">
-		<constructor-arg ref="customerService" />
-		<constructor-arg ref="diaryService" />
-	</bean>
 
 	<!-- AOP Configuration -->
 	<aop:aspectj-autoproxy />
