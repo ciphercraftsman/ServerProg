@@ -1,0 +1,20 @@
+/*C2*/SET SCHEMA PUBLIC
+drop table if exists Action CASCADE 
+drop table if exists Customer CASCADE 
+drop table if exists CUSTOMER_CALL CASCADE 
+drop table if exists Customer_CUSTOMER_CALL CASCADE 
+drop sequence if exists hibernate_sequence
+create sequence hibernate_sequence start with 1 increment by 1
+create table Action (actionId integer not null, complete boolean not null, details varchar(255), owningUser varchar(255), requiredBy timestamp, primary key (actionId))
+create table Customer (customerId varchar(255) not null, companyName varchar(255), email varchar(255), notes varchar(255), PHONE varchar(255), primary key (customerId))
+create table CUSTOMER_CALL (id integer not null, notes varchar(255), TIME_AND_DATE timestamp, primary key (id))
+create table Customer_CUSTOMER_CALL (Customer_customerId varchar(255) not null, calls_id integer not null)
+alter table Customer_CUSTOMER_CALL add constraint UK_evnsns56qqsn91r0wxij0lwha unique (calls_id)
+alter table Customer_CUSTOMER_CALL add constraint FK1719ltnop7jcsuduyi9ra5pox foreign key (calls_id) references CUSTOMER_CALL
+alter table Customer_CUSTOMER_CALL add constraint FKtmi329ua6uolcrsx2stvnan6d foreign key (Customer_customerId) references Customer
+INSERT INTO CUSTOMER VALUES('CS090933','Acme','hello@helloacme.com','VIP customer','49-249249-20')
+COMMIT
+INSERT INTO CUSTOMER_CALL VALUES(1,'Barry asked for 10 % discount on EPTEP system','2025-01-18 22:14:07.705000')
+INSERT INTO CUSTOMER_CUSTOMER_CALL VALUES('CS090933',1)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
