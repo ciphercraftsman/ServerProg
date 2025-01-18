@@ -1,16 +1,18 @@
 package com.yrgo.domain;
 
+import javax.persistence.*;
+
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
+/**
+ * Represents a job that we have to perform as the result of a call.
+ * For example: Check with Jim that the new patch will be ready by 15 December 2019.
+ */
 @Entity
 public class Action {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int actionId;
 
 
@@ -26,42 +28,43 @@ public class Action {
 	private boolean complete;
 
 
-	public Action(String details, Calendar requiredBy, String owningUser){
+	public Action(String details, Calendar requiredBy, String owningUser) {
 		this.details = details;
 		this.requiredBy = requiredBy;
 		this.owningUser = owningUser;
 		this.complete = false;
 	}
 
-	public Action(String actionId, String details, Calendar requiredBy, String owningUser, boolean complete){
+	public Action(String actionId, String details, Calendar requiredBy, String owningUser, boolean complete) {
 		this.details = details;
 		this.requiredBy = requiredBy;
 		this.owningUser = owningUser;
 		this.complete = complete;
 
 
-		this.actionId = new Integer(actionId);
+		this.actionId = Integer.parseInt(actionId);
 	}
 
 
-	public boolean isOverdue()	{
-		Calendar dateNow = new java.util.GregorianCalendar();
+	public boolean isOverdue() {
+		Calendar currentDate = new GregorianCalendar();
 
-		return dateNow.after(this.requiredBy);
+		return currentDate.after(this.requiredBy);
 	}
 
 
-	public String toString()	{
-		return "Action for " + this.owningUser + ": " + this.details + ", required by " + this.requiredBy.getTime();
+	public String toString() {
+		return "Action " + "for " + this.owningUser + ": " + this.details
+				+ ", required by " + this.requiredBy.getTime();
 	}
 
 
-	public void completeAction()	{
+	public void completeAction() {
 		this.complete = true;
 	}
 
 
-	public boolean isComplete() 	{
+	public boolean isComplete() {
 		return this.complete;
 	}
 
@@ -102,5 +105,6 @@ public class Action {
 	}
 
 
-	public Action() {}
+	public Action() {
+	}
 }

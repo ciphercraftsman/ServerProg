@@ -1,39 +1,36 @@
 package com.yrgo.services.diary;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
-import com.yrgo.domain.Action;
-import org.springframework.context.annotation.Primary;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
-@Service
-@Primary
+import org.springframework.transaction.annotation.Transactional;
+import com.yrgo.domain.Action;
+
 @Transactional
+@Service
 public class DiaryManagementServiceMockImpl implements DiaryManagementService {
 
 	private Set<Action> allActions = new HashSet<>();
 
 	@Override
 	public void recordAction(Action action) {
-		// Lägg till action till samlingen allActions
-		allActions.add(action);
-		System.out.println("Action recorded: " + action.getDetails());
-	}
-
-	@Override
-	public List<Action> getAllIncompleteActions(String requiredUser) {
-		List<Action> incompleteActions = new ArrayList<>();
-
-		// Loopa igenom alla actions och filtrera efter villkor
-		for (Action action : allActions) {
-			if (action.getOwningUser().equals(requiredUser) && !action.isComplete()) {
-				incompleteActions.add(action);
-			}
+		if (action != null) {
+			allActions.add(action);
 		}
-
-		return incompleteActions;
 	}
+
+	public List<Action> getAllIncompleteActions(String requiredUser) {
+		var actions = new ArrayList<Action>();
+		var currentDate = new GregorianCalendar();
+
+		allActions.forEach(x -> {
+			if (x.getOwningUser().equals(requiredUser)
+					&& !x.isComplete()
+					&& currentDate.before(x.getRequiredBy())) {
+				actions.add(x);
+			}
+		});
+		return actions;
+	}
+
 }

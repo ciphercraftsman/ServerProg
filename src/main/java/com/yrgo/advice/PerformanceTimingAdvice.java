@@ -1,20 +1,29 @@
 package com.yrgo.advice;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 
 public class PerformanceTimingAdvice {
 
-    public Object measureExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
-        long start = System.nanoTime();
-        Object result = joinPoint.proceed();
-        long end = System.nanoTime();
+    public Object performTimingMeasurement(ProceedingJoinPoint method) throws Throwable {
 
-        String className = joinPoint.getTarget().getClass().getName();
-        String methodName = joinPoint.getSignature().getName();
-        double timeTaken = (end - start) / 1_000_000.0;
+        long startTime = System.nanoTime();
 
-        System.out.printf("Time taken for the method %s from the class %s took %.4fms%n", methodName, className, timeTaken);
+        try {
+            return method.proceed();
+        } catch (Exception ex) {
+            System.err.println("Error in " +
+                    method.getSignature().getDeclaringTypeName() + "." +
+                    method.getSignature().getName());
+        } finally {
+            long endTime = System.nanoTime();
+            double timeTaken = endTime - startTime;
 
-        return result;
+            System.out.println("The method " +
+                    method.getSignature().getDeclaringTypeName() + "." +
+                    method.getSignature().getName() + " took " + timeTaken
+                    / 1000000 + " ms");
+        }
+        return null;
     }
 }

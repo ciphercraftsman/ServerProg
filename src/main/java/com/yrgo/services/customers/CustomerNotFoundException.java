@@ -3,8 +3,8 @@ package com.yrgo.services.customers;
 public class CustomerNotFoundException extends Exception {
 
 	// Standardkonstruktör
-	public CustomerNotFoundException(String message) {
-		super(message);
+	public CustomerNotFoundException() {
+		super("Customer not found");
 	}
 
 	// Konstruktor med orsak

@@ -1,26 +1,27 @@
 package com.yrgo.dataaccess;
 
 import java.util.List;
+
 import com.yrgo.domain.Call;
 import com.yrgo.domain.Customer;
 
 public interface CustomerDao {
 
-	void createCustomer(Customer customer);
+	public void create(Customer customer);
 
-	Customer getCustomerById(String customerId) throws RecordNotFoundException;
+	public Customer getById(String customerId) throws RecordNotFoundException;
 
-	List<Customer> getCustomersByName(String name);
+	public List<Customer> getByName(String name) throws RecordNotFoundException;
 
-	void updateCustomer(Customer customerToUpdate);
+	public void update(Customer customerToUpdate) throws RecordNotFoundException;
 
-	void deleteCustomer(String customerId);
+	public void delete(Customer oldCustomer) throws RecordNotFoundException;
 
-	List<Customer> getAllCustomers();
-
-    public Customer getFullCustomerDetail(String customerId) throws RecordNotFoundException;
+	public List<Customer> getAllCustomers();
 
 
-    public void addCall (Call newCall, String customerId) throws RecordNotFoundException;
+	public Customer getFullCustomerDetail(String customerId) throws RecordNotFoundException;
+
+
+	public void addCall (Call newCall, String customerId) throws RecordNotFoundException;
 }
-
