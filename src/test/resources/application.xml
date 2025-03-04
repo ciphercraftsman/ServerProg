@@ -12,7 +12,7 @@
 					http://www.springframework.org/schema/context
 					https://www.springframework.org/schema/context/spring-context.xsd">
 
-    <import resource="datasource-production.xml"/>
+    <import resource="datasource-test.xml"/>
 
     <!-- Session factory -->
     <bean id="sessionFactory"

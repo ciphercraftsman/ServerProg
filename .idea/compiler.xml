@@ -7,10 +7,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="crm-serverprog" />
+        <module name="BookStore-Maven" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="BookStore-Maven" target="11" />
       <module name="CRM-System" target="11" />
     </bytecodeTargetLevel>
   </component>

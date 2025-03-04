@@ -5,9 +5,10 @@ import com.yrgo.domain.Action;
 import com.yrgo.domain.Call;
 import com.yrgo.domain.Customer;
 import com.yrgo.services.calls.CallHandlingService;
-import com.yrgo.services.customers.CustomerNotFoundException;
 import com.yrgo.services.customers.CustomerManagementService;
+import com.yrgo.services.customers.CustomerNotFoundException;
 import com.yrgo.services.diary.DiaryManagementService;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -16,7 +17,7 @@ import java.util.List;
 public class SimpleClient {
     public static void main(String[] args) {
         // try-with-resources to close container in all scenarios
-        try (ClassPathXmlApplicationContext container = new ClassPathXmlApplicationContext("application.xml")) {
+        try (ClassPathXmlApplicationContext container = new ClassPathXmlApplicationContext("application-production.xml")) {
 
             CustomerManagementService cms = container.getBean(CustomerManagementService.class);
             DiaryManagementService diaryManagementService = container.getBean(DiaryManagementService.class);

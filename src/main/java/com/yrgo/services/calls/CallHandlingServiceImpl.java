@@ -19,11 +19,9 @@ import java.util.Collection;
 @Transactional
 @Service
 public class CallHandlingServiceImpl implements CallHandlingService {
+    private CustomerManagementService cms;
+    private DiaryManagementService dms;
 
-    private final CustomerManagementService cms;
-    private final DiaryManagementService dms;
-
-    // Constructor to inject dependencies
     public CallHandlingServiceImpl(CustomerManagementService cms, DiaryManagementService dms) {
         this.cms = cms;
         this.dms = dms;
@@ -31,10 +29,7 @@ public class CallHandlingServiceImpl implements CallHandlingService {
 
     @Override
     public void recordCall(String customerId, Call newCall, Collection<Action> actions) throws CustomerNotFoundException {
-        // Record the call for the customer
         cms.recordCall(customerId, newCall);
-
-        // Record actions in the diary management service
         actions.forEach(dms::recordAction);
     }
 }

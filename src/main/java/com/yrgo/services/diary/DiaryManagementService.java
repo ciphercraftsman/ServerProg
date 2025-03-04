@@ -1,4 +1,4 @@
- package com.yrgo.services.diary;
+package com.yrgo.services.diary;
 
 import java.util.List;
 

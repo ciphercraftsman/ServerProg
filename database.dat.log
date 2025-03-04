@@ -14,7 +14,7 @@ alter table Customer_CUSTOMER_CALL add constraint FK1719ltnop7jcsuduyi9ra5pox fo
 alter table Customer_CUSTOMER_CALL add constraint FKtmi329ua6uolcrsx2stvnan6d foreign key (Customer_customerId) references Customer
 INSERT INTO CUSTOMER VALUES('CS090933','Acme','hello@helloacme.com','VIP customer','49-249249-20')
 COMMIT
-INSERT INTO CUSTOMER_CALL VALUES(1,'Barry asked for 10 % discount on EPTEP system','2025-01-18 22:14:07.705000')
+INSERT INTO CUSTOMER_CALL VALUES(1,'Barry asked for 10 % discount on EPTEP system','2025-03-04 09:03:11.599000')
 INSERT INTO CUSTOMER_CUSTOMER_CALL VALUES('CS090933',1)
 ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
 COMMIT
