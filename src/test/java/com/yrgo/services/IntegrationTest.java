@@ -13,7 +13,7 @@ import com.yrgo.services.customers.CustomerNotFoundException;
 import static org.junit.jupiter.api.Assertions.*;
 
 @Transactional
-class CustomerManagementServiceIntegrationTest {
+class IntegrationTest {
     private ClassPathXmlApplicationContext context;
     private CustomerManagementService cms;
     private static final String customerId = "CS010101";
